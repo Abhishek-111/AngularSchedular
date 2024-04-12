@@ -101,12 +101,15 @@ export class CalendarComponent implements OnInit {
       //this.eventService.events.push(newlyAddedEvent)
     });
   }
-
+  
+/**
+   * Loads the events
+   */
   public loadEvents(): void {
     this.eventService.getEvents().subscribe({
       next: (response) => {
         this.eventList = response;
-
+        // Assigning colors code, resizabe and draggable
         this.eventList.forEach((event) => {
           event.start = new Date(event.start);
           event.end = new Date(event.end);
@@ -114,16 +117,13 @@ export class CalendarComponent implements OnInit {
           (event.draggable = true),
             (event.resizable = { beforeStart: true, afterEnd: true });
           
-            
           this.eventService.events = [...this.eventService.events, event];
-         
-          
         });
 
         this.refreshCalendar();
       },
       error: (error) => {
-        console.log(error);
+       // console.log(error);
       },
     });
   }
@@ -142,49 +142,33 @@ export class CalendarComponent implements OnInit {
   public dayClicked({date,events,}: {date: Date;events: CalendarEvent[];}): void {
     //console.log('Date is:- ' + date);
     const clickedDate = new Date(date);
-    //const clickedDateOnly = new Date(clickedDate.getFullYear(), clickedDate.getMonth(), clickedDate.getDate());
-
     let dateClicked =
       clickedDate.getFullYear().toString() +
       clickedDate.getMonth().toString() +
       clickedDate.getDate().toString();
-   // console.log('Date Clicked:' + dateClicked);
+   
     this.dateOfEvent = clickedDate.getDate().toString()+'-'+clickedDate.getMonth().toString()+'-'+clickedDate.getFullYear().toString();
 
     this.eventsOfSelectedDate = [];
-
-    // console.log("clicked Date only: "+clickedDate.getFullYear().toString()+clickedDate.getMonth().toString()+clickedDate.getDate().toString());
-    //console.log("Event DATE is:- "+events);
     this.eventService.events.forEach((event) => {
       const eventStartDate = new Date(event.start);
       const eventEndDate = new Date(event.end || event.start);
-      //const eventEndDateOnly = new Date(eventEndDate.getFullYear(),eventEndDate.getMonth(), eventEndDate.getDate());
-
-      // const eventStartDateOnly = new Date(
-      //   eventStartDate.getFullYear(),
-      //   eventStartDate.getMonth(),
-      //   eventStartDate.getDate()
-      // );
-      let eventStartDate2 =
+     
+      let eventStartDateInString =
         eventStartDate.getFullYear().toString() +
         eventStartDate.getMonth().toString() +
         eventStartDate.getDate().toString();
-      let eventEndDate2 =
+      let eventEndDateInString =
         eventEndDate.getFullYear().toString() +
         eventEndDate.getMonth().toString() +
         eventEndDate.getDate().toString();
-
-      //console.log("Eventtt"+Number(eventStartDate2));
+      
       if (
-        Number(dateClicked) >= Number(eventStartDate2) &&
-        Number(dateClicked) <= Number(eventEndDate2)
+        Number(dateClicked) >= Number(eventStartDateInString) &&
+        Number(dateClicked) <= Number(eventEndDateInString)
       ) {
         console.log('Event falls in any scheduled event');
-        
-        // show events in modal
-        //console.log(event.title);
-        //console.log(event.customerId)
-
+      
         const selectedEvent = {
           title:event.title,
           id:Number(event.id),
@@ -208,9 +192,6 @@ export class CalendarComponent implements OnInit {
     }
    
     
-
-    
-
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -381,6 +362,9 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+   /**
+   * Selects the target event to display details (if more than one event are scheduled on same date)
+   */
   public targetEvent(eventId?:number){
       this.eventsOfSelectedDate.forEach((event) => {
         if(event.id === eventId){
@@ -404,6 +388,10 @@ export class CalendarComponent implements OnInit {
   public isJumpToDate(day: any): boolean {
     return day.date.getTime() === this.jumpToDate.getTime();
   }
+
+   /**
+   * Jump to a particular date (if user choses any date on event-details component)
+   */
   public jumpToSelectedDate() {
     this.eventService.jumpToDate.subscribe((date) => {
       this.viewDate = new Date(date);
