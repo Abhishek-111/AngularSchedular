@@ -147,31 +147,4 @@ export class EventDetailsComponent implements OnInit{
       //this.closeModal();
     }
   }
-
-  /**
-   * Update an event
-   */
-  // public updateEvent() {
-  //   this.eventService
-  //     .updateEvent(this.eventId || 0, this.selectedEvent)
-  //     .subscribe({
-  //       next: (response) => {
-  //         //this.closeModal();
-  //         this.toast.success({
-  //           detail: 'successs',
-  //           summary: response.message,
-  //           duration: 4000,
-  //         });
-  //         //this.refreshCalendar();
-  //       },
-  //       error: (error) => {
-  //         console.log(error);
-  //         this.toast.error({
-  //           detail: 'Error',
-  //           summary: error.message,
-  //           duration: 4000,
-  //         });
-  //       },
-  //     });
-  // }
 }
