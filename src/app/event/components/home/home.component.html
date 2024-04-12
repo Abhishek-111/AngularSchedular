@@ -1,0 +1,101 @@
+<div class="row">
+    <div class="col-lg-4 user-section">
+        <!-- <div class="card m-2 customer">
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <a class="navbar-brand" style="color: darkblue;">Customer</a>
+                    <div>
+                        <span *ngIf="!isCustomerSelected" (click)="selectCustomer()"><i class="fa fa-plus"></i> Add</span>
+                        <span *ngIf="isCustomerSelected">
+                            <span class="m-2" (click)="deleteCustomer()"><i class="fa fa-trash"></i></span>
+                            <span (click)="editCustomer()"><i class="fa fa-pencil"></i></span>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+
+
+            <div class="card-body">
+                <form class="row">
+                    <div class="col-12">
+                        <label for="name" class="col-form-label-sm">Name</label>
+                        <input type="txet" class="form-control form-control-sm" id="name" name="name" [(ngModel)]="customer.name" disabled>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="username" class="col-form-label-sm">Username</label>
+                        <input type="text" class="form-control form-control-sm" id="username" name="username" [(ngModel)]="customer.username" disabled>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="email" class="col-form-label-sm">Email</label>
+                        <input type="email" class="form-control form-control-sm" id="email" name="email" [(ngModel)]="customer.email" disabled>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="city" class="col-form-label-sm">City</label>
+                        <input type="text" class="form-control form-control-sm" id="city" name="city" [(ngModel)]="customer.city" disabled>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="phone" class="col-form-label-sm">Phone</label>
+                        <input type="text" class="form-control form-control-sm" id="phone" name="phone" [(ngModel)]="customer.phoneNumber" disabled>
+                    </div>
+
+                </form>
+            </div>
+        </div> -->
+        <div class="scrollable-content">
+        <app-event-details (formSubmitted)="submitDetails($event)"></app-event-details>
+        <app-user-details [label]="'Customer'" [userDetails]="customer" [isUserSelected]="isCustomerSelected" (userSelected)="selectUser($event)" (editUser)="editUser($event)" (userDeleted)="deleteUser($event)"></app-user-details>
+        <app-user-details [label]="'Advisor'" [userDetails]="advisor" [isUserSelected]="isAdvisorSelected" (userSelected)="selectUser($event)" (editUser)="editUser($event)" (userDeleted)="deleteUser($event)"></app-user-details>
+        </div>
+
+    </div>
+    <div class="col-lg-8 calendar-content">
+        <app-calendar></app-calendar>
+    </div>
+
+</div>
+
+
+<div class="modal user_d" tabindex="-1" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-sm-8">
+                <label for="name" class="col-form-label-sm">Name</label>
+                <input type="text" class="form-control form-control-sm" placeholder="Enter Name" id="name" [(ngModel)]="formValue">
+            </div>
+            <div class="col-sm-4 mt-4 ms-4">
+                <button class="btn btn-primary" (click)="searchUser()">Search</button>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="users-list">
+                <table class="table">
+                    <thead>
+                      <tr class="table-primary">
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-secondary">
+                      <tr *ngFor='let user of userList'>
+                        <td>{{user.name}} </td>        
+                        <td>{{user.email}}</td>
+                        <td>{{user.phoneNumber}}</td>
+                        <td>
+                            <button class="btn btn-primary" (click)="userSelected(user.id,user.role)">Select</button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="close()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

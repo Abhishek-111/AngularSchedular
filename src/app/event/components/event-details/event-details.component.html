@@ -1,0 +1,63 @@
+<div class="card m-2">
+    <nav class="navbar">
+        <div class="container-fluid">
+            
+            <a class="navbar-brand"><span class="material-symbols-outlined">
+                event
+                </span> Event Details</a>
+        </div>
+    </nav>
+
+
+    <div class="card-body">
+        <form [formGroup]="eventForm" class="row">
+            <div class="col-12">
+                <!-- <label for="title" class="col-form-label-sm">Title</label>
+                <input type="text" class="form-control form-control-sm" id="title" formControlName="title"> -->
+                <app-input [label]="'Title'" [inputType]="'text'" formControlName="title" [isDisabled]="false"></app-input>
+            </div>
+
+            
+                <div class="col-sm-6">
+                    <!-- <label for="startDate" class="col-form-label-sm">Start Date</label>
+                    <input type="datetime-local" class="form-control form-control-sm" id="startDate" formControlName="startDate"> -->
+                    <app-input [label]="'Start Date'" [inputType]="'datetime-local'" formControlName="startDate" [isDisabled]="false"></app-input>
+                    <button class="round-button mt-1" (click)="selectedStartDate()">
+                        <span class="icon material-symbols-outlined">check</span>
+                      </button>
+                </div>
+                
+                <div class="col-sm-6">
+                    <!-- <label for="endDate" class="col-form-label-sm">End Date</label>
+                    <input type="datetime-local" class="form-control form-control-sm" id="endDate" formControlName="endDate"> -->
+                    <app-input [label]="'End Date'" [inputType]="'datetime-local'" formControlName="endDate" [isDisabled]="false"></app-input>
+                    <button class="round-button mt-1" (click)="selectedEndDate()">
+                        <span class="icon material-symbols-outlined">check</span>
+                      </button>
+                    
+                </div>
+            
+            
+
+            <div class="col-sm-12">
+                <!-- <label for="type" class="col-form-label-sm">Type</label>
+                <input type="text" class="form-control form-control-sm" id="type" formControlName="type"> -->
+                <app-input [label]="'Type'" [inputType]="'text'" formControlName="type" [isDisabled]="false"></app-input>
+            </div>
+            <div class="col-sm-12">
+                <app-input [label]="'Comment'" [inputType]="'text'" formControlName="comment" [isDisabled]="false"></app-input>
+                <!-- <label for="comment" class="col-form-label-sm">Comment</label>
+                <input type="text" class="form-control form-control-sm" id="comment" formControlName="comment"> -->
+            </div>
+            
+            <!-- <div class="row"> -->
+                <button class="btn btn-primary col-sm-3 mt-2" (click)="submit()"><span class="btn-text">Submit</span></button>
+                <button class="btn btn-info mt-2 col-sm-3  " [disabled]="!isOldEvent" (click)="resetForm()"><span class="btn-text">Reset</span></button>
+                <button class="btn btn-warning mt-2 col-sm-3 " [disabled]="!isOldEvent"><span class="btn-text">Update</span></button>
+                <button class="btn btn-danger mt-2 col-sm-3" [disabled]="!isOldEvent"><span class="btn-text" (click)="deleteEvent()">Delete</span></button>
+                
+            <!-- </div> -->
+               
+        </form>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.navbar{
+    background-color: rgb(90, 204, 243);
+    color: darkblue;
+}
+
+.material-symbols-outlined{
+    margin-right: 5px;
+}
+
+.navbar-brand{
+    color: darkblue; display: flex; align-items: center;
+}

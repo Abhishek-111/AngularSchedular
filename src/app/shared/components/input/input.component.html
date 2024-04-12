@@ -1,0 +1,4 @@
+<label for="field" class="col-form-label-sm">{{label}} <b class="text-danger">*</b></label>
+<div class="col-sm-12">
+    <input type="{{inputType}}" class="form-control form-control-sm" id="field" [(ngModel)]="data" (input)="valueChanged()" [disabled]="isDisabled">
+</div>

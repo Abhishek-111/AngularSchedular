@@ -1,0 +1,40 @@
+.navbar{
+    background-color: rgb(90, 204, 243);
+    color: darkblue;
+}
+.material-symbols-outlined{
+    margin-right: 5px;
+}
+
+.navbar-brand{
+    color: darkblue; display: flex; align-items: center;
+}
+
+.round-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; 
+    height: 30px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #f0f0f0; 
+    cursor: pointer;
+    transition: background-color 0.3s; 
+  }
+  
+  .round-button:hover {
+    /* background-color: #e0e0e0;  #03d3fc */
+    background-color:#8ae1f2
+  }
+  
+  .round-button .icon.material-symbols-outlined {
+    font-size: 16px; 
+    color: #333; 
+  }
+
+.btn-text{
+    font-size: 0.8rem;
+}
+  

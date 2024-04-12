@@ -1,0 +1,39 @@
+.custom-active-day{
+    background-color: yellow;
+    color:black;
+}
+
+/* Modal  */
+.dotted-line{
+    border:none;
+    border-top:2px dotted #000;
+    height:0;
+  }
+  
+  .btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .btn button{
+    margin-right: 10px;
+  }
+/* Modal ends  */
+
+/* Material icon modify  */
+
+.material-symbols-outlined {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+  
+  
+  /* Blur background */
+  .modal-open .modal::before {
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+  }
+
+  
